@@ -90,7 +90,7 @@ public class UserController {
             if(auth.isAuthenticated()) {
                 SecurityContextHolder.getContext().setAuthentication(auth);
                 User tmpUser = usersService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
-                tmpUser.setLastDateOfUse(new Timestamp(new java.util.Date().getTime()));
+                tmpUser.setLastDateOfUse(new Timestamp(new java.util.Date().getTime()).toString());
                 usersService.update(tmpUser);
                 return "Success";
             }

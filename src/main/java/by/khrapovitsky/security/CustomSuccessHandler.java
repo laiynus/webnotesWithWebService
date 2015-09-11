@@ -21,7 +21,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler,Logout
     @Override
     public void onAuthenticationSuccess(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         User user = usersService.getUser(authentication.getName());
-        user.setLastDateOfUse(new Timestamp(new java.util.Date().getTime()));
+        user.setLastDateOfUse(new Timestamp(new java.util.Date().getTime()).toString());
         usersService.update(user);
         httpServletResponse.sendRedirect("notes");
     }
@@ -29,7 +29,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler,Logout
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         User user = usersService.getUser(authentication.getName());
-        user.setLastDateOfUse(new Timestamp(new java.util.Date().getTime()));
+        user.setLastDateOfUse(new Timestamp(new java.util.Date().getTime()).toString());
         usersService.update(user);
         httpServletResponse.sendRedirect("sign?logout");
     }

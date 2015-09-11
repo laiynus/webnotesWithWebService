@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -27,7 +26,7 @@ public class User implements UserDetails,Serializable{
     private String password;
     @Column(name ="lastDateOfUse",nullable = true)
     @XmlElement
-    private Timestamp lastDateOfUse;
+    private String lastDateOfUse;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch=FetchType.LAZY)
     private List<Note> notes;
 
@@ -57,11 +56,11 @@ public class User implements UserDetails,Serializable{
         this.password = password;
     }
 
-    public Timestamp getLastDateOfUse() {
+    public String getLastDateOfUse() {
         return lastDateOfUse;
     }
 
-    public void setLastDateOfUse(Timestamp lastDateOfUse) {
+    public void setLastDateOfUse(String lastDateOfUse) {
         this.lastDateOfUse = lastDateOfUse;
     }
 
